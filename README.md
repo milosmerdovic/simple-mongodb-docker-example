@@ -1,7 +1,7 @@
 # *Items management system*
 
-## ~This app is created mainly for educational purposes~
------
+## This app is created mainly for educational purposes
+
 
 ## *Technology used*
  - Java 17
