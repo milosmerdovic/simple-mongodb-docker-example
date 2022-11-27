@@ -33,6 +33,7 @@
  
   1.Get Method (For getting all items from mongo)
    - http://localhost:8080/items 
-    + NOTE: you can modifie url with specific parameters for elements for <br>page size(pageSize), <br>number of page(pageNo),<br> sorting type(sortBy) and <br> sorting directions(sortDirection)
-    in that case url would look likes this:
+    + NOTE: you can modifie url with specific parameters for elements for <br>page size(pageSize), <br>number of page(pageNo),<br> sorting type(sortBy) and <br> sorting directions(sortDirection)<br>
+    In that case url would look likes this:
     http://localhost:8080/items?pageSize=20&pageNo=2&sortBy=itemId&sortDirection=DSC
+  2.
