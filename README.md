@@ -1,13 +1,13 @@
 <h1> ***Items management system*** <h1><br>
 
-<p><h2> This app is created mainly for educational purposes <h2><p>
+This app is created mainly for educational purposes
  
-<h2>List of Content<h2>
-- ## Technology used
-- ## Runing application
-- ## Endpoints
+## List of Content
+- Technology used
+- Runing application
+- Endpoints
 
-<h2>Technology used<h2>
+## Technology used
  - Java 17
  - Spring boot 2.7.5
  - Lombok 1.8.24
