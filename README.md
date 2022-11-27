@@ -1,6 +1,6 @@
 <h1> ***Items management system*** <h1><br>
 
-**This app is created mainly for educational purposes**
+<h3>**This app is created mainly for educational purposes** <h3>
  
 ## List of Content
 - Technology used
