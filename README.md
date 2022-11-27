@@ -46,7 +46,7 @@
   4.Post Metghod (For creating item)
    - http://localhost:8080/items/add-item
     + NOTE: must have included object, in postman it should looked like this:
-     ```{"itemId": 15,
+     ```    "itemId": 15,
             "serialNumber": 2255,
             "category": "Mobile",
-            "name": "Nokia3310"}
+            "name": "Nokia3310"
