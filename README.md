@@ -49,4 +49,4 @@
      ```{"itemId": 15,
             "serialNumber": 2255,
             "category": "Mobile",
-            "name": "Nokia3310"}```
+            "name": "Nokia3310"}
