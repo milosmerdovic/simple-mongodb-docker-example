@@ -32,8 +32,23 @@
  ### You can check endpoints in your browser after running the app, i prefer to use postman in this cases
  
   1.Get Method (For getting all items from mongo)
-   - http://localhost:8080/items 
+   - http://localhost:8080/items <- returns all items from db
     + NOTE: you can modifie url with specific parameters for elements for <br>page size(pageSize), <br>number of page(pageNo),<br> sorting type(sortBy) and <br> sorting directions(sortDirection)<br>
     In that case url would look likes this:
     http://localhost:8080/items?pageSize=20&pageNo=2&sortBy=itemId&sortDirection=DSC
-  2.
+  
+  2.Get Method (For category search)
+   - http://localhost:8080/items/categories/Mobiles <- returns all items sorted by category filed
+                                                      
+  3.Get Method (For getting item by specifig id)
+   - http://localhost:8080/items/7
+                                                       
+  4.Post Metghod (For creating item)
+   - http://localhost:8080/items/add-item
+    + NOTE: must have included object, in postman it should looked like this:
+     ```{
+            "itemId": 15,
+            "serialNumber": 2255,
+            "category": "Mobile",
+            "name": "Nokia3310"
+}```
