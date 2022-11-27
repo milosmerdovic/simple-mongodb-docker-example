@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  # <mongo DB Setup>
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_DATABASE: test
+    ports:
+      - 27017:27017
+    networks:
+      - mongodb
+    volumes:
+      - mongodb_data_container:/data/db
+  # Application image settings
+  myapp:
+    image: mymongoapp:latest
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongodb
+    ports:
+      - 8080:8080
+    networks:
+      - mongodb
+networks:
+  mongodb:
+    driver: bridge
+
+volumes:
+  mongodb_data_container:
