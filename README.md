@@ -1,4 +1,4 @@
-<h1> ***Items management system*** <h1><br>
+#***Items management system***<br>
 
 <h3>**This app is created mainly for educational purposes** <h3>
  
