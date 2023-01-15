@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/items")
+@RequestMapping(Endpoints.ITEMS)
 public class ItemsController {
+
     @Autowired
     ItemServiceImpl service;
 
@@ -40,24 +41,8 @@ public class ItemsController {
                                             .build());
     }
 
-    @GetMapping(value = "categories/{category}",produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ApiResponse<List<ItemDto>>> getAllItemsByCategory(@PathVariable String category,
-                                                                  @RequestParam(defaultValue = "0", required = false)Integer pageNo,
-                                                                  @RequestParam(defaultValue = "20", required = false) Integer pageSize,
-                                                                  @RequestParam(defaultValue = "itemId", required = false) String sortBy,
-                                                                  @RequestParam(defaultValue = "ASC", required = false) String sortDirection){
-        Sort.Direction sortDir = sortDirection.equalsIgnoreCase("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Pageable paging = PageRequest.of(pageNo, pageSize, sortDir, sortBy);
-        ServiceResponse<List<ItemDto>> response = service.getAllItemsByCategory(category,paging);
-        return ResponseEntity.ok(ApiResponse.<List<ItemDto>>builder()
-                .operationResultCode(HttpStatus.OK.value())
-                .operationResultDescription("Fetched all items filtered by categories")
-                .totalObjectNumber(response.getTotal())
-                .returnedObjectNumber(response.getPayload().size())
-                .payload(response.getPayload())
-                .build());
-    }
-
+    // TODO -> solve bug -> when returning by id, ApiResponse.returnedObjectNumber
+    //                                          & ApiResponse.totalObjectNumber always returning 0
     @GetMapping(value = "{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse<Item>> getItemById(@PathVariable Long id){
         ServiceResponse<Item> item = service.getItemById(id);
@@ -71,7 +56,7 @@ public class ItemsController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping(value = "add-item", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse<Item>> addItem(@RequestBody ItemDto itemDto){
         ServiceResponse<Item> item = service.createItem(itemDto);
         return ResponseEntity.ok(ApiResponse.<Item>builder()
@@ -83,7 +68,7 @@ public class ItemsController {
                                             .build());
     }
 
-    @PatchMapping(value = "update", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PatchMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse<Item>> updateItem(@RequestBody ItemDto itemDto) throws ItemNotFoundException {
         ServiceResponse<Item> item = service.updateItem(itemDto);
         return ResponseEntity.ok(ApiResponse.<Item>builder()
@@ -95,7 +80,7 @@ public class ItemsController {
                         .build());
     }
 
-    @DeleteMapping(value = "delete/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(value = "{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<String>deleteItem(@PathVariable Long id) throws ItemNotFoundException {
         service.removeItem(id);
         return ResponseEntity.ok("Item with id: " + id + " successfully deleted");
