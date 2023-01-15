@@ -41,8 +41,6 @@ public class ItemsController {
                                             .build());
     }
 
-    // TODO -> solve bug -> when returning by id, ApiResponse.returnedObjectNumber
-    //                                          & ApiResponse.totalObjectNumber always returning 0
     @GetMapping(value = "{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<ApiResponse<Item>> getItemById(@PathVariable Long id){
         ServiceResponse<Item> item = service.getItemById(id);
@@ -51,6 +49,8 @@ public class ItemsController {
                                             .payload(item.getPayload())
                                             .operationResultDescription("Item successfully fetched")
                                             .operationResultCode(HttpStatus.OK.value())
+                                            .totalObjectNumber(1)
+                                            .returnedObjectNumber(1)
                                             .build());
         }
         return ResponseEntity.badRequest().build();
